@@ -6,16 +6,14 @@ angular
 	.module("ngClassifieds")
 	.factory("classifiedsFactory", function($http) {
 
-	//factories need to return objs
+		function getClassifieds() {
+			return $http.get('data/classifieds.json');
+		}
 
-	function getClassifieds() {
-		// return $http.get('././data/classifieds.json');
-		return $http.get('data/classifieds.json');
-	}
-
-	return {
-		getClassifieds: getClassifieds
-	}
+		return {
+			getClassifieds: getClassifieds
+		}
 
 	});
+	
 })();

@@ -72,20 +72,17 @@ angular
 		}
 
 		function deleteClassified(event, classified) {
-			//remove from memory not from source in this case from list
 			var confirm = $mdDialog.confirm()
 				.title('Are you sure you want to delete ' + classified.title + '?')
 				.ok('Yes')
 				.cancel('No')
 				.targetEvent(event);
-				//resolution of it, what happens if it resolves
 			$mdDialog.show(confirm).then(function() {
 				var index = vm.classifieds.indexOf(classified);
 				vm.classifieds.splice(index, 1);
+				showToast('Classified Deleted');
 			}, function() {
-				//second parameter to then method
-				//whatever we want to happen if qwe click on no, we dont want to delete
-				//leave it blank for now
+				
 			});
 		}
 

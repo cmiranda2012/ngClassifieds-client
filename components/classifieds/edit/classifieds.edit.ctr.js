@@ -10,8 +10,8 @@
       vm.closeSidebar = closeSidebar;
       vm.saveEdit = saveEdit;
       vm.classified = $state.params.classified;
-      // // We need a watcher to trigger the sidenav
-      // // opening and closing
+      
+      // opening and closing
       $scope.$watch('vm.sidenavOpen', function(sidenavOpen) {
         if(sidenavOpen === false) {
           $mdSidenav('left')
