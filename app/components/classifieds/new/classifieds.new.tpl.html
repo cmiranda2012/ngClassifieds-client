@@ -1,0 +1,49 @@
+<md-sidenav class="md-sidevar-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sidenavOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Add a Classified</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <form name="newClassified">
+            <md-input-container>
+                <label for="title">Title</label>
+                <input name="title" type="text" id="title" ng-model="classified.title" md-autofocus minlength="3" maxlength="30" required>
+                <div ng-messages="newClassified.title.$error">
+                    <span ng-message="minlength">Title is too short.</span>
+                    <span ng-message="maxlength">Title is too long.</span>
+                    <span ng-message="required">Title is required.</span>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label for="price">Price</label>
+                <input name="price" type="number" id="price" ng-model="classified.price" required>
+                <div ng-messages="newClassified.price.$error">
+                    <span ng-message="required">Price is required.</span>
+                    <span ng-message="number">Not a valid number.</span>
+                </div>
+            </md-input-container>
+            <md-input-container>
+                <label for="description">Description</label>
+                <textarea type="text" id="description" ng-model="classified.description"></textarea>
+            </md-input-container>
+            <md-input-container>
+                <label for="image">Image Link</label>
+                <input name="image" type="text" id="image" ng-model="classified.image">
+            </md-input-container>
+            <hr style="border-style: none;border-width: 0px;">
+            <md-input-container>
+                <label for="categories">Categories</label>
+                <md-select ng-model="classified.category">
+                    <md-option ng-repeat="category in vm.categories" value="{{ category }}">
+                        {{ category }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <div layoyt="row">
+                <md-button type="submit" class="md-primary" ng-if="!editing" ng-click="vm.saveClassified(classified)">
+                    <md-icon class="mdi mdi-check-circle-outline"></md-icon>Save</md-button>
+                <md-button class="md-warn" ng-click="vm.closeSidebar()">
+                    <md-icon class="mdi mdi-close"></md-icon>Cancel</md-button>
+            </div>
+        </form>
+    </md-content>
+</md-sidenav>
