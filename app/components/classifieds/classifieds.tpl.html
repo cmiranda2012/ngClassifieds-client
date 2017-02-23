@@ -1,0 +1,88 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>ngClassifieds</strong></p>
+        <md-button ng-click="vm.openSidebar()" ng-show="vm.loggedIn">
+            <md-icon class="mdi mdi-plus-circle"></md-icon>
+            New Classfied
+        </md-button>
+        <md-button ng-click="vm.toggleFilterShow()">
+            <md-icon class="mdi mdi-magnify"></md-icon>
+            Filters
+        </md-button>
+        <span flex=""></span>
+        <md-button ng-click="vm.login()" ng-if="!vm.loggedIn">
+            <md-icon class="mdi mdi-login-variant"></md-icon>
+            Log In
+        </md-button>
+        <md-button ng-click="vm.register()" ng-if="!vm.loggedIn">
+            <md-icon class="mdi mdi-account-plus"></md-icon>
+            Sign Up
+        </md-button>
+        <md-button ng-click="vm.account()" ng-if="vm.loggedIn">
+            <md-icon class="mdi mdi-account"></md-icon>
+            My Account
+        </md-button>
+        <md-button ng-click="vm.logout()" ng-if="vm.loggedIn">
+            <md-icon class="mdi mdi-logout-variant"></md-icon>
+            Log Out
+        </md-button>
+    </div>
+</md-toolbar>
+<div class="filters" layout="row" layout-align="center" ng-show="vm.showFilters">
+    <md-input-container>
+        <label>Enter Search Term</label>
+        <input type="text" ng-model="classifiedsFilter">
+    </md-input-container>
+    <md-input-container>
+        <label>Category</label>
+        <md-select ng-model="category">
+            <md-option ng-repeat="category in vm.categories" value="{{ category }}">
+                {{ category }}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container>
+        <md-button id="margin" class="md-warn" ng-click="classifiedsFilter = ''; category = ''">
+            Clear
+        </md-button>
+    </md-input-container>
+</div>
+<ui-view></ui-view>
+<md-content class="md-padding" layout="row" layout-wrap>
+    <md-card ng-repeat="classified in vm.classifieds | filter: classifiedsFilter | filter: category" flex="30" class="classified">
+        <md-card-header>
+            <md-card-avatar>
+                <md-icon class="md-avatar-icon" md-svg-icon="/components/img/icons/menu.svg"></md-icon>
+            </md-card-avatar>
+            <md-card-header-text>
+                <span class="md-title">{{ classified.title }}</span>
+                <span class="md-subhead">{{ classified.category }}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{ classified.image }}" class="md-card-image" alt="">
+        <md-card-title class="classified-info" ng-show="!showContact">
+            <md-card-title-text>
+                <span class="md-headline">{{ classified.price | currency }}</span>
+                <span class="md-subhead">{{ classified.description }}</span>
+                <div layout-gt-sm="row">
+                    <span class="md-subhead" flex-gt-sm=""><b>{{ classified.createdAt | date }}</b></span>
+                    <span class="md-subhead" flex-gt-sm=""><md-icon class="mdi mdi-map-marker"></md-icon>{{ classified.city }} , {{ classified.state }}</span>
+                </div>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <div class="classified-contact" ng-show="showContact">
+                <p>
+                    <md-icon class="mdi mdi-account"></md-icon> {{ classified.name }}</p>
+                <p>
+                    <md-icon class="mdi mdi-cellphone"></md-icon> {{ classified.phone }}</p>
+                <p>
+                    <md-icon class="mdi mdi-email"></md-icon> {{ classified.email }}</p>
+            </div>
+            <div layout="row">
+                <md-button ng-click="showContact = true" ng-show="!showContact">Contact</md-button>
+                <md-button ng-click="showContact = false" ng-show="showContact">Details</md-button>
+            </div>
+        </md-card-content>
+    </md-card>
+</md-content>
