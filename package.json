@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -13,8 +14,14 @@
     "angular-animate": "1.5.5",
     "angular-aria": "1.5.5",
     "angular-material": "1.1.0",
+    "angular-messages": "^1.6.2",
     "angular-ui-router": "^0.4.2",
+    "cors": "^2.8.1",
     "lodash": "^4.17.4",
     "mdi": "^1.8.36"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1"
   }
 }
