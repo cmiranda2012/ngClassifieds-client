@@ -1,0 +1,127 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <p><strong>ngClassifieds</strong></p>
+        <span flex=""></span>
+        <md-button ng-click="vm.home()">
+            <md-icon class="mdi mdi-book-open-variant"></md-icon>
+            Classifieds
+        </md-button>
+        <md-button ng-click="vm.logout()">
+            <md-icon class="mdi mdi-logout-variant"></md-icon>
+            Log Out
+        </md-button>
+    </div>
+</md-toolbar>
+<ui-view></ui-view>
+<div>
+    <md-content>
+        <md-tabs md-dynamic-height="" md-border-bottom="">
+            <md-tab label="account info">
+                <md-content class="md-padding">
+                    <div layout="column">
+                        <md-content layout-padding="">
+                            <div>
+                                <div layout-gt-sm="row">
+                                    <user-avatar style="margin-right:20px"></user-avatar>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>First name</label>
+                                        <input ng-model="vm.user.firstName" disabled="">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Last Name</label>
+                                        <input ng-model="vm.user.lastName" disabled="">
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Email</label>
+                                        <input ng-model="vm.user.email" disabled="">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Phone</label>
+                                        <input ng-model="vm.user.phone" disabled="">
+                                    </md-input-container>
+                                </div>
+                                <div layout-gt-sm="row">
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>City</label>
+                                        <input ng-model="vm.user.city" disabled="">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>State</label>
+                                        <input ng-model="vm.user.state" disabled="">
+                                    </md-input-container>
+                                    <md-input-container class="md-block" flex-gt-sm="">
+                                        <label>Postal Code</label>
+                                        <input name="postalCode" ng-model="vm.user.postalCode" disabled="">
+                                    </md-input-container>
+                                </div>
+                            </div>
+                        </md-content>
+                    </div>
+                </md-content>
+            </md-tab>
+            <md-tab label="my classifieds">
+                <md-content class="md-padding">
+                    <md-content flex="" layout-padding="">
+                        <md-card ng-repeat="classified in vm.classifieds" flex="30" class="classified">
+                            <md-card-header>
+                                <md-card-avatar>
+                                    <md-icon class="md-avatar-icon" md-svg-icon="/components/img/icons/menu.svg"></md-icon>
+                                </md-card-avatar>
+                                <md-card-header-text>
+                                    <span class="md-title">{{ classified.title }}</span>
+                                    <span class="md-subhead">{{ classified.category }}</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <img ng-src="{{ classified.image }}" class="md-card-image" alt="">
+                            <md-card-title class="classified-info" ng-show="!showContact">
+                                <md-card-title-text>
+                                    <span class="md-headline">{{ classified.price | currency }}</span>
+                                    <span class="md-subhead">{{ classified.description }}</span>
+                                    <div layout-gt-sm="row">
+                                        <span class="md-subhead" flex-gt-sm=""><b>{{ classified.createdAt | date }}</b></span>
+                                        <span class="md-subhead" flex-gt-sm=""><md-icon class="mdi mdi-map-marker"></md-icon>{{ classified.city }} , {{ classified.state }}</span>
+                                    </div>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <div class="classified-contact" ng-show="showContact">
+                                    <p>
+                                        <md-icon class="mdi mdi-account"></md-icon>
+                                        {{ classified.name }}
+                                    </p>
+                                    <p>
+                                        <md-icon class="mdi mdi-cellphone"></md-icon>
+                                        {{ classified.phone }}
+                                    </p>
+                                    <p>
+                                        <md-icon class="mdi mdi-email"></md-icon>
+                                        {{ classified.email }}
+                                    </p>
+                                </div>
+                                <div layout="row">
+                                    <md-button ng-click="showContact = true" ng-show="!showContact">Contact</md-button>
+                                    <md-button ng-click="showContact = false" ng-show="showContact">Details</md-button>
+                                    <md-button class="md-warn" ng-click="showAdmin = true" ng-show="!showAdmin">Admin</md-button>
+                                    <md-button ng-click="showAdmin = false" ng-show="showAdmin">Close</md-button>
+                                </div>
+                                <div class="classified-admin" ng-if="showAdmin">
+                                    <h3>Admin</h3>
+                                    <div layout="row">
+                                        <md-button ng-click="vm.editClassified(classified)" class="md-primary">
+                                            Edit
+                                        </md-button>
+                                        <md-button ng-click="vm.deleteClassified($event, classified, classified._id)" class="md-warn">
+                                            Delete
+                                        </md-button>
+                                    </div>
+                                </div>
+                            </md-card-content>
+                        </md-card>
+                    </md-content>
+                </md-content>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>
