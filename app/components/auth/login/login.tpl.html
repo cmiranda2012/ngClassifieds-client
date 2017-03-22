@@ -1,0 +1,35 @@
+<md-sidenav class="md-sidevar-left md-whiteframe-z2" md-component-id="left"
+    md-is-open="vm.sidenavOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Log In</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <!-- TODO: Add css for error -->
+        <div ng-show="error">{{errorMessage}}
+        </div>
+        <form name="Form">
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" ng-model="loginForm.email"
+                ng-pattern="/^.+@.+\..+$/"
+                required>
+                <div ng-messages="Form.email.$error">
+                    <span ng-message="required" class="my-message">Please enter your email.</span>
+                    <span ng-message="pattern">
+                    Your email must look like an e-mail address.
+                    </span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
+                <div ng-messages="Form.password.$error">
+                    <span ng-message="required" class="my-message">Please enter your password.</span>
+                </div>
+            </md-input-container>
+        
+            <md-button ng-click="vm.login()" class="md-primary"><md-icon class="mdi mdi-check-circle-outline"></md-icon>Login</md-button>
+            <md-button ng-click="vm.clear()" class="md-warn"><md-icon class="mdi mdi-close"></md-icon>Clear</md-button>
+        </form>
+    </md-content>
+</md-sidenav>
