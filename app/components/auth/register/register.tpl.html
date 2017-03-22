@@ -1,0 +1,73 @@
+<md-sidenav class="md-sidevar-left md-whiteframe-z2" md-component-id="left" md-is-open="vm.sidenavOpen">
+    <md-toolbar>
+        <h1 class="md-toolbar-tools">Sign Up</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <!-- TODO: Add css for error -->
+        <div ng-show="error">{{errorMessage}}
+        </div>
+        <form name="Form">
+            <md-input-container class="md-block">
+                <label>First Name</label>
+                <input type="text" class="form-control" name="firstName" ng-model="registerForm.firstName" required>
+                <div ng-messages="Form.firstName.$error">
+                    <span ng-message="required" class="my-message">Please enter your first name.</span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Last Name</label>
+                <input type="text" class="form-control" name="lastName" ng-model="registerForm.lastName" required>
+                <div ng-messages="Form.lastName.$error">
+                    <span ng-message="required" class="my-message">Please enter your last name.</span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" name="phone" ng-model="registerForm.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" required>
+                <div ng-messages="Form.phone.$error">
+                    <span ng-message="required" class="my-message">Please enter your phone number.</span>
+                    <span ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>City</label>
+                <input type="text" class="form-control" name="city" ng-model="registerForm.city" required>
+                <div ng-messages="Form.city.$error">
+                    <span ng-message="required" class="my-message">Please enter your city.</span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>State</label>
+                <input type="text" class="form-control" name="state" ng-model="registerForm.state" required>
+                <div ng-messages="Form.state.$error">
+                    <span ng-message="required" class="my-message">Please pick your state.</span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" ng-model="registerForm.email" ng-pattern="/^.+@.+\..+$/" required>
+                <div ng-messages="Form.email.$error">
+                    <span ng-message="required" class="my-message">Please enter an email.</span>
+                    <span ng-message="pattern">
+                    Your email must look like an e-mail address.
+                    </span>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password" ng-model="registerForm.password" minlength="6" maxlength="15" required>
+                <div ng-messages="Form.password.$error">
+                    <span ng-message="required" class="my-message">Please enter a password.</span>
+                    <span ng-message="minlength">Password is too short.</span>
+                    <span ng-message="maxlength">Password is too long.</span>
+                </div>
+            </md-input-container>
+            <md-button class="md-primary" ng-click="vm.register()">
+                <md-icon class="mdi mdi-check-circle-outline"></md-icon> Register
+            </md-button>
+            <md-button class="md-warn" ng-click="vm.clear()">
+                <md-icon class="mdi mdi-close"></md-icon> Clear
+            </md-button>
+        </form>
+    </md-content>
+</md-sidenav>
