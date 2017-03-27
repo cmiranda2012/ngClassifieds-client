@@ -3,25 +3,17 @@
     "use strict";
 
     angular
-        .module("ngClassifieds")
-        .controller('accountCtrl', function($http, $scope, $mdToast, $mdSidenav, $mdDialog, $state, classifiedsFactory, AuthService) {
+        .module('ngClassifieds')
+        .controller('accountCtrl', function ($http, $scope, $mdToast, $mdSidenav, $mdDialog, $state, AuthService, user, userClassifieds) {
 
             const vm = this;
 
-            vm.user;
-            vm.classifieds;
+            vm.user = user.data;
+            vm.classifieds = userClassifieds.data;
             vm.deleteClassified = deleteClassified;
             vm.editClassified = editClassified;
             vm.logout = logout;
             vm.home = home;
-
-            classifiedsFactory.getUser().then(function(user) {
-                vm.user = user.data;
-            });
-
-            classifiedsFactory.getUserClassifieds().then(function(classifieds) {
-                vm.classifieds = classifieds.data;
-            });
 
             $scope.$on('editSaved', function(event, message, classified) {
                 $http.put(`http://localhost:8081/api/classifieds/${classified._id}`, classified)
@@ -86,5 +78,4 @@
             }
 
         });
-
 })();

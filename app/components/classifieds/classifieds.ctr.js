@@ -1,16 +1,16 @@
 (function() {
 
-    "use strict";
+    'use strict';
 
     angular
-        .module("ngClassifieds")
-        .controller("classifiedsCtrl", function($http, $scope, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog, $state, $interval, AuthService) {
+        .module('ngClassifieds')
+        .controller('classifiedsCtrl', function($http, $scope, $mdSidenav, $mdToast, $mdDialog, $state, $interval, AuthService, classifieds, categories) {
 
             const vm = this;
 
             isLoggedIn();
 
-            vm.classifieds;
+            vm.classifieds = classifieds.data;
             vm.showFilters = false;
             vm.loggedIn = false;
             vm.openSidebar = openSidebar;
@@ -20,46 +20,7 @@
             vm.toggleFilterShow = toggleFilterShow;
             vm.isLoggedIn = isLoggedIn;
             vm.logout = logout
-            vm.categories = [
-                'Antiques',
-                'Art',
-                'Baby',
-                'Books',
-                'Business & Industrial',
-                'Cameras & Photo',
-                'Cell Phones & Accessories',
-                'Clothing, Shoes & Accessories',
-                'Coins & Paper Money',
-                'Collectible',
-                'Computers/Tablets & Networking',
-                'Consumer Electronics',
-                'Crafts',
-                'Dolls & Bears',
-                'DVDs & Movies',
-                'Entertainment Memorabilia',
-                'Everything Else',
-                'Gift Cards & Coupons',
-                'Health & Beauty',
-                'Home & Garden',
-                'Jewelry & Watches',
-                'Music',
-                'Musical Instruments & Gear',
-                'Pet Supplies',
-                'Pottery & Glass',
-                'Real Estate',
-                'Specialty Services',
-                'Sporting Goods',
-                'Sports Mem, Cards & Fan Shop',
-                'Stamps',
-                'Tickets & Experiences',
-                'Toys & Hobbies',
-                'Travel',
-                'Video Games & Consoles'
-            ];
-
-            classifiedsFactory.getClassifieds().then(function(classifieds) {
-                vm.classifieds = classifieds.data;
-            });
+            vm.categories = categories;
 
             $scope.$on('newClassified', function(event, classified) {
 
