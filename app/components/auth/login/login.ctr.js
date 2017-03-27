@@ -1,6 +1,6 @@
 (function() {
 
-    "use strict";
+    'use strict';
 
     angular
         .module('ngClassifieds')
@@ -40,10 +40,9 @@
             function login() {
                 $scope.error = false;
 
-                AuthService.login(
-                        $scope.loginForm.email,
-                        $scope.loginForm.password
-                    ).then(function(data) {
+                const { email, password } = $scope.loginForm;
+
+                AuthService.login(email, password).then(function(data) {
                         $state.go('classifieds', null, {
                             reload: true
                         });
@@ -53,10 +52,9 @@
                         if (err) {
                             $scope.error = true;
                             $scope.errorMessage = err.msg;
-                            $scope.loginForm.password = '';
+                            password = '';
                         }
                     });
             }
-            
         });
 })();

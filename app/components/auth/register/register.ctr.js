@@ -3,14 +3,15 @@
     "use strict";
 
     angular
-        .module("ngClassifieds")
-        .controller('registerCtrl', function($scope, $state, $mdSidenav, $mdDialog, $timeout, AuthService) {
+        .module('ngClassifieds')
+        .controller('registerCtrl', function($scope, $state, $mdSidenav, $mdDialog, $timeout, AuthService, states) {
 
             const vm = this;
 
             vm.sidenavOpen;
             vm.register = register;
             vm.clear = clear;
+            vm.states = states
 
             $scope.$watch('vm.sidenavOpen', function(sidenavOpen) {
 
@@ -35,7 +36,9 @@
 
                 $scope.error = false;
 
-                AuthService.register($scope.registerForm.firstName, $scope.registerForm.lastName, $scope.registerForm.phone, $scope.registerForm.city, $scope.registerForm.state, $scope.registerForm.email, $scope.registerForm.password)
+                const { firstName, lastName, phone, city, state, zipCode, email, password } = $scope.registerForm;
+
+                AuthService.register(firstName, lastName, phone, city, state, zipCode, email, password)
                     .then(function() {
                         $state.go('classifieds.login');
                         $scope.registerForm = {};
