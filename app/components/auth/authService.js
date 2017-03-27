@@ -4,7 +4,7 @@
 
     angular
         .module('ngClassifieds')
-        .factory('AuthService', function ($window, $q, $timeout, $http) {
+        .factory('AuthService', function($window, $q, $timeout, $http) {
 
             var user = null;
 
@@ -60,7 +60,7 @@
                 return deferred.promise;
             }
 
-            function register(firstName, lastName, phone, city, state, email, password) {
+            function register(firstName, lastName, phone, city, state, zipCode, email, password) {
 
                 var deferred = $q.defer();
 
@@ -70,6 +70,7 @@
                         phone: phone,
                         city: city,
                         state: state,
+                        zipCode: zipCode,
                         email: email,
                         password: password
                     })
