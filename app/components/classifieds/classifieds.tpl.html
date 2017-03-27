@@ -52,7 +52,7 @@
     <md-card ng-repeat="classified in vm.classifieds | filter: classifiedsFilter | filter: category" flex="30" class="classified">
         <md-card-header>
             <md-card-avatar>
-                <md-icon class="md-avatar-icon" md-svg-icon="/components/img/icons/menu.svg"></md-icon>
+                <md-icon class="md-avatar-icon" md-svg-icon="/assets/img/icons/menu.svg"></md-icon>
             </md-card-avatar>
             <md-card-header-text>
                 <span class="md-title">{{ classified.title }}</span>
@@ -66,7 +66,7 @@
                 <span class="md-subhead">{{ classified.description }}</span>
                 <div layout-gt-sm="row">
                     <span class="md-subhead" flex-gt-sm=""><b>{{ classified.createdAt | date }}</b></span>
-                    <span class="md-subhead" flex-gt-sm=""><md-icon class="mdi mdi-map-marker"></md-icon>{{ classified.city }} , {{ classified.state }}</span>
+                    <span class="md-subhead" flex-gt-sm=""><md-icon class="mdi mdi-map-marker"></md-icon>{{ classified.city }}, {{ classified.state }}</span>
                 </div>
             </md-card-title-text>
         </md-card-title>
