@@ -63,11 +63,11 @@
             </md-tab>
             <md-tab label="my classifieds">
                 <md-content class="md-padding">
-                    <md-content flex="" layout-padding="">
+                    <md-content class="md-padding" layout="row" layout-wrap>
                         <md-card ng-repeat="classified in vm.classifieds" flex="30" class="classified">
                             <md-card-header>
                                 <md-card-avatar>
-                                    <md-icon class="md-avatar-icon" md-svg-icon="/components/img/icons/menu.svg"></md-icon>
+                                    <md-icon class="md-avatar-icon" md-svg-icon="/assets/img/icons/menu.svg"></md-icon>
                                 </md-card-avatar>
                                 <md-card-header-text>
                                     <span class="md-title">{{ classified.title }}</span>
