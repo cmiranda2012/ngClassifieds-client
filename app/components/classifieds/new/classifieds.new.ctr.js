@@ -4,49 +4,14 @@
 
     angular
         .module('ngClassifieds')
-        .controller('newClassifiedsCtrl', function($state, $scope, $mdSidenav, $mdDialog, $timeout, classifiedsFactory) {
+        .controller('newClassifiedsCtrl', function($state, $scope, $mdSidenav, $mdDialog, $timeout, categories) {
 
             const vm = this;
 
             vm.sidenavOpen;
             vm.closeSidebar = closeSidebar;
             vm.saveClassified = saveClassified;
-            vm.categories = [
-                'Antiques',
-                'Art',
-                'Baby',
-                'Books',
-                'Business & Industrial',
-                'Cameras & Photo',
-                'Cell Phones & Accessories',
-                'Clothing, Shoes & Accessories',
-                'Coins & Paper Money',
-                'Collectible',
-                'Computers/Tablets & Networking',
-                'Consumer Electronics',
-                'Crafts',
-                'Dolls & Bears',
-                'DVDs & Movies',
-                'Entertainment Memorabilia',
-                'Everything Else',
-                'Gift Cards & Coupons',
-                'Health & Beauty',
-                'Home & Garden',
-                'Jewelry & Watches',
-                'Music',
-                'Musical Instruments & Gear',
-                'Pet Supplies',
-                'Pottery & Glass',
-                'Real Estate',
-                'Specialty Services',
-                'Sporting Goods',
-                'Sports Mem, Cards & Fan Shop',
-                'Stamps',
-                'Tickets & Experiences',
-                'Toys & Hobbies',
-                'Travel',
-                'Video Games & Consoles'
-            ];
+            vm.categories = categories;
 
             $scope.$watch('vm.sidenavOpen', function(sidenavOpen) {
 
@@ -76,5 +41,4 @@
             }
 
         });
-
 })();
