@@ -37,10 +37,18 @@
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
-                <label>State</label>
-                <input type="text" class="form-control" name="state" ng-model="registerForm.state" required>
-                <div ng-messages="Form.state.$error">
-                    <span ng-message="required" class="my-message">Please pick your state.</span>
+                <label for="states">States</label>
+                <md-select ng-model="registerForm.state">
+                    <md-option ng-repeat="state in vm.states" value="{{ state }}">
+                        {{ state }}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Zip Code</label>
+                <input type="text" class="form-control" name="zipCode" ng-model="registerForm.zipCode" required>
+                <div ng-messages="Form.zipCode.$error">
+                    <span ng-message="required" class="my-message">Enter zip code.</span>
                 </div>
             </md-input-container>
             <md-input-container class="md-block">
